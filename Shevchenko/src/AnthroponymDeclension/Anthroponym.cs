@@ -1,5 +1,8 @@
 namespace Shevchenko.AnthroponymDeclension
 {
+    /// <summary>
+    /// Anthroponym class.
+    /// </summary>
     public class Anthroponym
     {
         public string givenName { get; set; }
