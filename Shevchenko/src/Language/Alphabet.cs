@@ -1,7 +1,7 @@
-using System;
-
 namespace Shevchenko.Language
 {
+    using System;
+    
     /// <summary>
     /// Ukrainian alphabet encoding where the key is the letter of the alphabet
     /// and the value is the order number of the corresponding letter starting from 1.
@@ -48,7 +48,8 @@ namespace Shevchenko.Language
     /// </summary>
     public static class AlphabetConstants
     {
-        public const int ALPHABET_SIZE = 33;
+        //public const int ALPHABET_SIZE = 33;
+        public static readonly int AlphabetSize = Enum.GetNames(typeof(AlphabetEncoding)).Length;
     }
 
     /// <summary>

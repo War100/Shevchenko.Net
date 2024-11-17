@@ -14,6 +14,6 @@ public class TestAlphabet
     [Fact]
     public void AlphabetSizeShouldBeEqualTo33()
     {
-        Assert.Equal(33, AlphabetConstants.ALPHABET_SIZE);
+        Assert.Equal(33, AlphabetConstants.AlphabetSize);
     }
 }

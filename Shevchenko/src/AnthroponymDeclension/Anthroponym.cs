@@ -5,8 +5,8 @@ namespace Shevchenko.AnthroponymDeclension
     /// </summary>
     public class Anthroponym
     {
-        public string givenName { get; set; }
-        public string patronomicName { get; set; }
-        public string familyName { get; set; }
+        public string GivenName { get; set; }
+        public string PatronymicName { get; set; }
+        public string FamilyName { get; set; }
     }
 }

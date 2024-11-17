@@ -4,4 +4,28 @@
         <TargetFramework>netstandard2.0</TargetFramework>
     </PropertyGroup>
 
+    <ItemGroup>
+      <PackageReference Include="TensorFlow.NET" Version="0.150.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="src\AnthroponymDeclension\FamilyNameClassifier\Datasets\" />
+      <Folder Include="src\WordDeclension\Rules\Artifacts\" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Content Include="src\WordDeclension\Rules\Artifacts\declension-rules.json">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            <Link>Resources\declension-rules.json</Link>
+            <Pack>true</Pack>
+            <PackagePath>Resources\</PackagePath>
+        </Content>
+        <Content Include="src\AnthroponymDeclension\FamilyNameClassifier\Datasets\training.csv">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            <Link>Resources\training.csv</Link>
+            <Pack>true</Pack>
+            <PackagePath>Resources\</PackagePath>
+        </Content>
+    </ItemGroup>
+    
 </Project>

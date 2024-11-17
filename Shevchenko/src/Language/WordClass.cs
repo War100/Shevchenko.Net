@@ -1,7 +1,7 @@
-using System.ComponentModel;
-
 namespace Shevchenko.Language
 {
+    using System.ComponentModel;
+    
     public enum WordClass
     {
         [Description("noun")]
@@ -9,5 +9,8 @@ namespace Shevchenko.Language
         
         [Description("adjective")]
         Adjective,
+        
+        [Description("unknown")]
+        Unknown,
     }
 }

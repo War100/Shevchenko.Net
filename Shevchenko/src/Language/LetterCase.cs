@@ -1,8 +1,8 @@
-using System.Text;
-
 namespace Shevchenko.Language
 {
-    public class LetterCase
+    using System.Text;
+    
+    public static class LetterCase
     {
         /// <summary>
         /// Copies a letter case pattern from a template word to a target word.

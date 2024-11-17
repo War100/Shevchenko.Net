@@ -2,6 +2,9 @@ namespace Shevchenko.Language
 {
     using System.ComponentModel;
 
+    /// <summary>
+    /// Enum representing the possible grammatical cases.
+    /// </summary>
     public enum GrammaticalCase
     {
         [Description("nominative")]
@@ -25,4 +28,5 @@ namespace Shevchenko.Language
         [Description("vocative")]
         Vocative
     }
+    
 }
