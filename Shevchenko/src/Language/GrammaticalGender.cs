@@ -11,6 +11,6 @@ namespace Shevchenko.Language
         Masculine,
 
         [Description("feminine")]
-        Feminine
+        Feminine,
     }
 }

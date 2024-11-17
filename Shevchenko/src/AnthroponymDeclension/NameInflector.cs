@@ -1,9 +1,8 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
 namespace Shevchenko.AnthroponymDeclension
 {
-    using Language;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using Shevchenko.Language;
     
     public abstract class NameInflector
     {

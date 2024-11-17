@@ -1,11 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-
 namespace Shevchenko.AnthroponymDeclension.FamilyNameClassifier
 {
-    using Language;
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+    using Shevchenko.Language;
 
     public class FamilyNameClassifier
     {

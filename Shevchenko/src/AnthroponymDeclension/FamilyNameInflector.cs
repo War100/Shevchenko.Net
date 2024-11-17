@@ -1,11 +1,11 @@
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using Shevchenko.Language;
-using Shevchenko.WordDeclension;
-using Shevchenko.AnthroponymDeclension.FamilyNameClassifier;
-
 namespace Shevchenko.AnthroponymDeclension
 {
+    using System.Text.RegularExpressions;
+    using System.Threading.Tasks;
+    using Shevchenko.Language;
+    using Shevchenko.WordDeclension;
+    using Shevchenko.AnthroponymDeclension.FamilyNameClassifier;
+    
     /// <summary>
     /// Handles inflection of family names based on grammatical rules and classification.
     /// </summary>

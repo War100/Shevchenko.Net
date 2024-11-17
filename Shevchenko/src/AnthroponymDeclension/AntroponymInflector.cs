@@ -1,7 +1,6 @@
-using System.Threading.Tasks;
-
 namespace Shevchenko.AnthroponymDeclension
 {
+    using System.Threading.Tasks;
     using Shevchenko.Language;
     
     /// <summary>

@@ -1,8 +1,7 @@
-using System;
-
 namespace Shevchenko.AnthroponymDeclension.FamilyNameClassifier
 {
-    using Language;
+    using System;
+    using Shevchenko.Language;
     public class FamilyNameClassTransformer
     {
 

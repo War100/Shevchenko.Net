@@ -1,6 +1,6 @@
 namespace Shevchenko.AnthroponymDeclension.FamilyNameClassifier
 {
-    using Language;
+    using Shevchenko.Language;
     
     /// <summary>
     /// Представляє клас слова для класифікованого прізвища.

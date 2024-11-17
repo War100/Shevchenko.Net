@@ -26,6 +26,12 @@
             <Pack>true</Pack>
             <PackagePath>Resources\</PackagePath>
         </Content>
+        <Content Include="src/GenderDetection/given-names-genders.json">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            <Link>Resources\given-names-genders.json</Link>
+            <Pack>true</Pack>
+            <PackagePath>Resources\</PackagePath>
+        </Content>
     </ItemGroup>
     
 </Project>

@@ -1,7 +1,6 @@
-using System;
-
 namespace Shevchenko.WordDeclension
 {
+    using System;
     public class CommandRunnerFactory
     {
         /// <summary>

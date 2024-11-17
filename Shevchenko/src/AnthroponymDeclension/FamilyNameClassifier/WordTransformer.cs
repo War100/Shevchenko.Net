@@ -1,11 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Tensorflow.Common.Extensions;
-
 namespace Shevchenko.AnthroponymDeclension.FamilyNameClassifier
 {
-    using Language;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Shevchenko.Language;
     
     public class WordTransformer
     {

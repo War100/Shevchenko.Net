@@ -4,7 +4,7 @@ namespace Shevchenko.WordDeclension
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
-    using Language;
+    using Shevchenko.Language;
     
     public delegate bool CustomRuleFilter(DeclensionRule declensionRule, int index, List<DeclensionRule> declensionRules);
 

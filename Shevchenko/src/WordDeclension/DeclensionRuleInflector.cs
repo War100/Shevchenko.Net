@@ -1,9 +1,8 @@
-using System;
-using Shevchenko.Language;
-
 namespace Shevchenko.WordDeclension
 {
+    using System;
     using System.Text.RegularExpressions;
+    using Shevchenko.Language;
     
     public static class PatternUtils
     {
