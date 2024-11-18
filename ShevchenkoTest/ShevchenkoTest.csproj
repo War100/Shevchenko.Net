@@ -23,7 +23,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Shevchenko\Shevchenko.csproj" />
+      <ProjectReference Include="..\ShevchenkoLibrary\ShevchenkoLibrary.csproj" />
     </ItemGroup>
 
     <ItemGroup>

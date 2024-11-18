@@ -5,7 +5,7 @@ namespace Shevchenko.GenderDetection
     using System.Collections.Generic;
     using System.IO;
     using System.Text.RegularExpressions;
-    using Newtonsoft.Json;
+    using System.Text.Json;
     using Shevchenko.AnthroponymDeclension;
     using Shevchenko.Language;
 
@@ -62,7 +62,12 @@ namespace Shevchenko.GenderDetection
             var json = File.ReadAllText(filePath);
 
             // Десеріалізація JSON у словник зі строковими значеннями
-            var rawData = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
+            var rawData = JsonSerializer.Deserialize<Dictionary<string, string>>(json);
+
+            if (rawData == null)
+            {
+                throw new InvalidOperationException("Failed to deserialize given names data.");
+            }
 
             var genders = new Dictionary<string, GrammaticalGender>(StringComparer.OrdinalIgnoreCase);
             foreach (var entry in rawData)

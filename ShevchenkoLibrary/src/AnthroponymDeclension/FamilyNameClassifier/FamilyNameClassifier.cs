@@ -8,7 +8,7 @@ namespace Shevchenko.AnthroponymDeclension.FamilyNameClassifier
 
     public class FamilyNameClassifier
     {
-        private readonly string _csvFilePath = "/home/war100/Projects/shevchenko.net/Library/Shevchenko/Shevchenko/src/AnthroponymDeclension/FamilyNameClassifier/Datasets/training.csv";
+        private readonly string _csvFilePath = "Resources/training.csv";
         private readonly Dictionary<string, FamilyNameClass> _wordClasses;
 
         /// <summary>

@@ -3,7 +3,7 @@ namespace Shevchenko
     using System.Collections.Generic;
     using System.IO;
     using System.Threading.Tasks;
-    using Newtonsoft.Json;
+    using System.Text.Json;
     using Shevchenko.Language;
     using Shevchenko.GenderDetection;
     using Shevchenko.WordDeclension;
@@ -16,7 +16,7 @@ namespace Shevchenko
             
             var rulesDataPath = "Resources/declension-rules.json";
             var jsonData = File.ReadAllText(rulesDataPath);
-            var rules = JsonConvert.DeserializeObject<List<DeclensionRule>>(jsonData);
+            var rules = JsonSerializer.Deserialize<List<DeclensionRule>>(jsonData);
 
             return rules;
         }

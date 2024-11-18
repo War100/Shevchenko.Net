@@ -2,11 +2,15 @@
 
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
-    </PropertyGroup>
+        <Version>0.8.0</Version>
+        <Authors>Andrii Butovchenko</Authors>
+        <Description>Translation of TS library "shevchenko.js v3.09" (made by tooleks) on .Net Standard 2.0 Framework.
+Original project: https://github.com/tooleks/shevchenko-js
 
-    <ItemGroup>
-      <PackageReference Include="TensorFlow.NET" Version="0.150.0" />
-    </ItemGroup>
+This project is created as a part of the university practice. It's still incomplete so use it with caution.
+The unfinished part is family-name-classifier which is responsible for classifying family name class. Instead of ML model this project uses dictionary and heuristic method. </Description>
+        <RootNamespace>Shevchenko</RootNamespace>
+    </PropertyGroup>
 
     <ItemGroup>
       <Folder Include="src\AnthroponymDeclension\FamilyNameClassifier\Datasets\" />
@@ -32,6 +36,10 @@
             <Pack>true</Pack>
             <PackagePath>Resources\</PackagePath>
         </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="System.Text.Json" Version="9.0.0" />
     </ItemGroup>
     
 </Project>

@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shevchenko", "Shevchenko\Shevchenko.csproj", "{5591E8F3-F7CD-4C68-85AE-CDAA6CB3648B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShevchenkoLibrary", "ShevchenkoLibrary\ShevchenkoLibrary.csproj", "{5591E8F3-F7CD-4C68-85AE-CDAA6CB3648B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShevchenkoTest", "ShevchenkoTest\ShevchenkoTest.csproj", "{DED9C9CF-D260-46BB-B620-BE5B942E4F71}"
 EndProject

@@ -20,11 +20,11 @@ public class TestDetectGender
     }
 
     [Fact]
-    public void ShouldReturnNullIfTheGrammaticalGenderCannotBeDetected()
+    public async void ShouldReturnNullIfTheGrammaticalGenderCannotBeDetected()
     {
-        Assert.Null(GenderDetector.DetectGender(new Anthroponym { FamilyName = "Шевченко" }));
-        Assert.Null(GenderDetector.DetectGender(new Anthroponym { FamilyName = "Косач" }));
-        Assert.Null(GenderDetector.DetectGender(new Anthroponym { GivenName = "Тара" }));
-        Assert.Null(GenderDetector.DetectGender(new Anthroponym { GivenName = "Лара" }));
+        Assert.Null(await GenderDetector.DetectGender(new Anthroponym { FamilyName = "Шевченко" }));
+        Assert.Null(await GenderDetector.DetectGender(new Anthroponym { FamilyName = "Косач" }));
+        Assert.Null(await GenderDetector.DetectGender(new Anthroponym { GivenName = "Тара" }));
+        Assert.Null(await GenderDetector.DetectGender(new Anthroponym { GivenName = "Лара" }));
     }
 }
