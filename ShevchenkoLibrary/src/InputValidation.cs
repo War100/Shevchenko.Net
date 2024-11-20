@@ -15,12 +15,12 @@ namespace Shevchenko
         /// </summary>
         /// <param name="value">The input value to validate.</param>
         /// <exception cref="InputValidationError">Thrown if the input is invalid.</exception>
-        public static void ValidateDeclensionInput(DeclensionInput value)
+        public static void ValidateDeclensionInput(AnthroponymDeclension.Anthroponym value)
         {
             if (value == null)
                 throw new InputValidationError("The input type must be an object.");
 
-            if (!Enum.IsDefined(typeof(GrammaticalGender), value.Gender))
+            if (value.Gender != null && !Enum.IsDefined(typeof(GrammaticalGender), value.Gender))
             {
                 throw new InputValidationError(
                     $"The \"gender\" parameter must be one of the following: " +
@@ -56,7 +56,7 @@ namespace Shevchenko
         /// </summary>
         /// <param name="value">The input value to validate.</param>
         /// <exception cref="InputValidationError">Thrown if the input is invalid.</exception>
-        public static void ValidateGenderDetectionInput(GenderDetectionInput value)
+        public static void ValidateGenderDetectionInput(AnthroponymDeclension.Anthroponym value)
         {
             if (value == null)
                 throw new InputValidationError("The input type must be an object.");

@@ -23,7 +23,7 @@ namespace Shevchenko.AnthroponymDeclension
         /// <inheritdoc />
         protected override async Task<string> InflectNamePartAsync(
             string patronymicName,
-            GrammaticalGender gender,
+            GrammaticalGender? gender,
             GrammaticalCase grammaticalCase,
             bool isLastWord)
         {

@@ -41,12 +41,19 @@ namespace Shevchenko.WordDeclension
     public class DeclensionRule
     {
         public string Description { get; set; }
+        
         public List<string> Examples { get; set; }
+        
         public WordClass WordClass { get; set; }
-        public List<GrammaticalGender> Gender { get; set; }
+        
+        public List<GrammaticalGender?> Gender { get; set; }
+        
         public int Priority { get; set; }
+        
         public List<ApplicationType> ApplicationType { get; set; }
+        
         public DeclensionPattern Pattern { get; set; }
+        
         public GrammaticalCases GrammaticalCases { get; set; }
     }
 }

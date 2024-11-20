@@ -2,6 +2,7 @@ namespace Shevchenko.AnthroponymDeclension
 {
     using System.Threading.Tasks;
     using Shevchenko.Language;
+    using Shevchenko.GenderDetection;
     
     /// <summary>
     /// Provides functionality for inflecting anthroponyms (names, patronymics, and family names).
@@ -37,10 +38,15 @@ namespace Shevchenko.AnthroponymDeclension
         /// <returns>An inflected <see cref="Anthroponym"/>.</returns>
         public async Task<Anthroponym> InflectAsync(
             Anthroponym anthroponym,
-            GrammaticalGender gender,
+            GrammaticalGender? gender,
             GrammaticalCase grammaticalCase)
         {
             var inflectedAnthroponym = new Anthroponym();
+
+            if (gender == null)
+            {
+                gender = await GenderDetector.DetectGender(anthroponym);
+            }
 
             if (!string.IsNullOrEmpty(anthroponym.GivenName))
             {

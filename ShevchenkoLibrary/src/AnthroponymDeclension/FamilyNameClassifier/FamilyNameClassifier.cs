@@ -1,3 +1,5 @@
+using System.Reflection;
+
 namespace Shevchenko.AnthroponymDeclension.FamilyNameClassifier
 {
     using System;
@@ -8,7 +10,7 @@ namespace Shevchenko.AnthroponymDeclension.FamilyNameClassifier
 
     public class FamilyNameClassifier
     {
-        private readonly string _csvFilePath = "Resources/training.csv";
+        private readonly string _csvFilePath = "Shevchenko.src.Resources.training.csv";
         private readonly Dictionary<string, FamilyNameClass> _wordClasses;
 
         /// <summary>
@@ -16,13 +18,7 @@ namespace Shevchenko.AnthroponymDeclension.FamilyNameClassifier
         /// </summary>
         public FamilyNameClassifier()
         {
-            if (string.IsNullOrEmpty(_csvFilePath))
-                throw new ArgumentNullException(nameof(_csvFilePath), "Шлях до CSV-файлу не може бути порожнім.");
-
-            if (!File.Exists(_csvFilePath))
-                throw new FileNotFoundException("CSV-файл не знайдено.", _csvFilePath);
-
-            _wordClasses = LoadFromCsv(_csvFilePath);
+            _wordClasses = LoadFromEmbeddedCsv(_csvFilePath);
         }
 
         /// <summary>
@@ -46,10 +42,10 @@ namespace Shevchenko.AnthroponymDeclension.FamilyNameClassifier
         }
 
         /// <summary>
-        /// Застосовує евристичні правила для визначення частини мови.
+        /// Applies heuristic rules to identify parts of speech.
         /// </summary>
-        /// <param name="word">Слово для аналізу.</param>
-        /// <returns>Частина мови, визначена за правилами.</returns>
+        /// <param name="word">A word for analysis.</param>
+        /// <returns>A part of speech defined by rules.</returns>
         private FamilyNameClass ApplyHeuristics(string word)
         {
             var nounEndingsLong = new List<string>
@@ -93,38 +89,54 @@ namespace Shevchenko.AnthroponymDeclension.FamilyNameClassifier
         }
 
         /// <summary>
-        /// Завантажує дані із CSV-файлу у словник.
+        /// Завантажує дані із вбудованого CSV-файлу у словник.
         /// </summary>
-        /// <param name="csvFilePath">Шлях до CSV-файлу.</param>
         /// <returns>Словник із даними про слова та їх класи.</returns>
-        private Dictionary<string, FamilyNameClass> LoadFromCsv(string csvFilePath)
+        private Dictionary<string, FamilyNameClass> LoadFromEmbeddedCsv(string csvResource)
         {
             var dictionary = new Dictionary<string, FamilyNameClass>();
-            foreach (var line in File.ReadLines(csvFilePath))
-            {
-                var parts = line.Split(',');
-                if (parts.Length == 2)
-                {
-                    var word = parts[0].Trim().ToLowerInvariant();
-                    var wordClassString = parts[1].Trim().ToLowerInvariant();
 
-                    WordClass wordClass;
-                    switch (wordClassString)
+            // Отримуємо поточну збірку
+            var assembly = typeof(FamilyNameClassifier).GetTypeInfo().Assembly;
+
+            using (var stream = assembly.GetManifestResourceStream(csvResource))
+            {
+                if (stream == null)
+                {
+                    throw new InvalidOperationException($"Ресурс '{csvResource}' не знайдено.");
+                }
+
+                using (var reader = new StreamReader(stream))
+                {
+                    string line;
+                    while ((line = reader.ReadLine()) != null)
                     {
-                        case "noun":
-                            wordClass = WordClass.Noun;
-                            break;
-                        case "adjective":
-                            wordClass = WordClass.Adjective;
-                            break;
-                        default:
-                            wordClass = WordClass.Unknown;
-                            break;
+                        var parts = line.Split(',');
+                        if (parts.Length == 2)
+                        {
+                            var word = parts[0].Trim().ToLowerInvariant();
+                            var wordClassString = parts[1].Trim().ToLowerInvariant();
+
+                            WordClass wordClass;
+                            switch (wordClassString)
+                            {
+                                case "noun":
+                                    wordClass = WordClass.Noun;
+                                    break;
+                                case "adjective":
+                                    wordClass = WordClass.Adjective;
+                                    break;
+                                default:
+                                    wordClass = WordClass.Unknown;
+                                    break;
+                            }
+
+                            dictionary[word] = new FamilyNameClass { WordClass = wordClass };
+                        }
                     }
-                    
-                    dictionary[parts[0].Trim().ToLowerInvariant()] = new FamilyNameClass { WordClass = wordClass };
                 }
             }
+
             return dictionary;
         }
     }

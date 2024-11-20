@@ -1,3 +1,5 @@
+using Xunit.Abstractions;
+
 namespace ShevchenkoTest.GenderDetection;
 
 using Shevchenko.Language;
@@ -6,6 +8,13 @@ using Shevchenko.AnthroponymDeclension;
 
 public class TestDetectGender
 {
+    private readonly ITestOutputHelper _testOutputHelper;
+
+    public TestDetectGender(ITestOutputHelper testOutputHelper)
+    {
+        _testOutputHelper = testOutputHelper;
+    }
+
     [Fact]
     public async void ShouldReturnTheGrammaticalGender()
     {

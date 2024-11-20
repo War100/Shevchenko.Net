@@ -15,7 +15,7 @@ namespace Shevchenko.AnthroponymDeclension
         /// <returns>A task representing the asynchronous operation. The task result contains the inflected name.</returns>
         public async Task<string> InflectAsync(
             string name,
-            GrammaticalGender gender,
+            GrammaticalGender? gender,
             GrammaticalCase grammaticalCase)
         {
             var inflectedNameParts = new List<string>();
@@ -45,7 +45,7 @@ namespace Shevchenko.AnthroponymDeclension
         /// <returns>A task representing the asynchronous operation. The task result contains the inflected name part.</returns>
         protected abstract Task<string> InflectNamePartAsync(
             string word,
-            GrammaticalGender gender,
+            GrammaticalGender? gender,
             GrammaticalCase grammaticalCase,
             bool isLastWord);
     }

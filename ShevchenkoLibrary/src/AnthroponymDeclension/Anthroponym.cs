@@ -1,27 +1,26 @@
+using Shevchenko.Language;
+
 namespace Shevchenko.AnthroponymDeclension
 {
-    using System;
-    
     /// <summary>
     /// Anthroponym class.
+    /// <example>                                
+    /// <code>                                   
+    /// new Anthroponym                          
+    /// {                                        
+    ///     Gender = GrammaticalGender.Masculine,
+    ///     GivenName = "Тарас",                 
+    ///     PatronymicName = "Григорович",       
+    ///     FamilyName = "Шевченко"              
+    /// };                                       
+    /// </code>                                  
+    /// </example>                               
     /// </summary>
     public class Anthroponym
     {
+        public GrammaticalGender? Gender { get; set; }
         public string GivenName { get; set; }
         public string PatronymicName { get; set; }
         public string FamilyName { get; set; }
-        
-        public static explicit operator DeclensionOutput(Anthroponym anthroponym)
-        {
-            if (anthroponym == null)
-                throw new ArgumentNullException(nameof(anthroponym));
-
-            return new DeclensionOutput
-            {
-                GivenName = anthroponym.GivenName,
-                PatronymicName = anthroponym.PatronymicName,
-                FamilyName = anthroponym.FamilyName
-            };
-        }
     }
 }

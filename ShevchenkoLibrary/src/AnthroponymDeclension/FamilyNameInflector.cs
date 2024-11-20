@@ -31,7 +31,7 @@ namespace Shevchenko.AnthroponymDeclension
         /// <inheritdoc />
         protected override async Task<string> InflectNamePartAsync(
             string familyName,
-            GrammaticalGender gender,
+            GrammaticalGender? gender,
             GrammaticalCase grammaticalCase,
             bool isLastWord)
         {
@@ -65,7 +65,7 @@ namespace Shevchenko.AnthroponymDeclension
         /// <param name="familyName">The family name to check.</param>
         /// <param name="gender">The grammatical gender of the name.</param>
         /// <returns>True if the family name is uncertain; otherwise, false.</returns>
-        private static bool IsUncertainFamilyNameClass(string familyName, GrammaticalGender gender)
+        private static bool IsUncertainFamilyNameClass(string familyName, GrammaticalGender? gender)
         {
             return (gender == GrammaticalGender.Feminine && UncertainFemininePattern.IsMatch(familyName)) ||
                    (gender == GrammaticalGender.Masculine && UncertainMasculinePattern.IsMatch(familyName));

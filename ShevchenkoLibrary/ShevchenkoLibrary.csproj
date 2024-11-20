@@ -2,44 +2,44 @@
 
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
-        <Version>0.8.0</Version>
+        <Version>0.8.3-alpha</Version>
         <Authors>Andrii Butovchenko</Authors>
-        <Description>Translation of TS library "shevchenko.js v3.09" (made by tooleks) on .Net Standard 2.0 Framework.
+        <Description>Library for declension of Ukrainian anthroponyms. 
+
+Translation of TS library "shevchenko.js v3.09" (made by tooleks) on .Net Standard 2.0 Framework.
 Original project: https://github.com/tooleks/shevchenko-js
 
 This project is created as a part of the university practice. It's still incomplete so use it with caution.
 The unfinished part is family-name-classifier which is responsible for classifying family name class. Instead of ML model this project uses dictionary and heuristic method. </Description>
+        <PackageLicenseFile>LICENSE</PackageLicenseFile>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
         <RootNamespace>Shevchenko</RootNamespace>
+        <RepositoryUrl>https://github.com/War100/Shevchenko.Net</RepositoryUrl>
+        <Title>Shevchenko.Net</Title>
+        <PackageIcon>BadDrawnTaras.png</PackageIcon>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <IncludeContentInPack>true</IncludeContentInPack>
+        <Copyright>Copyright (c) Andrii Butovchenko 2024</Copyright>
+        <PackageTags>Ukrainian,Language,Declension</PackageTags>
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="src\AnthroponymDeclension\FamilyNameClassifier\Datasets\" />
-      <Folder Include="src\WordDeclension\Rules\Artifacts\" />
+        <None Include="LICENSE" Pack="true" PackagePath="" />
+        <None Include="README.md" Pack="true" PackagePath=""/>
+        <EmbeddedResource Include="src\Resources\declension-rules.json" />
+        <EmbeddedResource Include="src\Resources\givenNamesGenders.json" />
+        <EmbeddedResource Include="src\Resources\training.csv" />
     </ItemGroup>
 
     <ItemGroup>
-        <Content Include="src\WordDeclension\Rules\Artifacts\declension-rules.json">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-            <Link>Resources\declension-rules.json</Link>
-            <Pack>true</Pack>
-            <PackagePath>Resources\</PackagePath>
-        </Content>
-        <Content Include="src\AnthroponymDeclension\FamilyNameClassifier\Datasets\training.csv">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-            <Link>Resources\training.csv</Link>
-            <Pack>true</Pack>
-            <PackagePath>Resources\</PackagePath>
-        </Content>
-        <Content Include="src/GenderDetection/given-names-genders.json">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-            <Link>Resources\given-names-genders.json</Link>
-            <Pack>true</Pack>
-            <PackagePath>Resources\</PackagePath>
-        </Content>
+      <None Update="BadDrawnTaras.png">
+        <Pack>True</Pack>
+        <PackagePath></PackagePath>
+      </None>
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="System.Text.Json" Version="9.0.0" />
+      <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     </ItemGroup>
     
 </Project>

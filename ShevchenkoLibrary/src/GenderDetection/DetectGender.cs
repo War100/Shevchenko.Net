@@ -3,9 +3,8 @@ namespace Shevchenko.GenderDetection
     using System.Threading.Tasks;
     using System;
     using System.Collections.Generic;
-    using System.IO;
     using System.Text.RegularExpressions;
-    using System.Text.Json;
+    using Newtonsoft.Json;
     using Shevchenko.AnthroponymDeclension;
     using Shevchenko.Language;
 
@@ -16,7 +15,7 @@ namespace Shevchenko.GenderDetection
         private static readonly Regex ApostropheVariationPattern = new Regex(@"[`""]", RegexOptions.Compiled);
 
         private static readonly Dictionary<string, GrammaticalGender> GivenNamesGenders
-            = LoadGivenNamesGenders("Resources/given-names-genders.json");
+            = LoadGivenNamesGenders("Shevchenko.src.Resources.givenNamesGenders.json");
 
         /// <summary>
         /// Detects the grammatical gender of the anthroponym using
@@ -59,10 +58,10 @@ namespace Shevchenko.GenderDetection
         
         private static Dictionary<string, GrammaticalGender> LoadGivenNamesGenders(string filePath)
         {
-            var json = File.ReadAllText(filePath);
+            var json = ResourceReader.ReadEmbeddedResource(filePath);
 
-            // Десеріалізація JSON у словник зі строковими значеннями
-            var rawData = JsonSerializer.Deserialize<Dictionary<string, string>>(json);
+            // Deserialization of JSON into dictionary
+            var rawData = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
 
             if (rawData == null)
             {

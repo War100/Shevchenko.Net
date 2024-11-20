@@ -1,9 +1,9 @@
 namespace Shevchenko
 {
+    using System;
     using System.Collections.Generic;
-    using System.IO;
     using System.Threading.Tasks;
-    using System.Text.Json;
+    using Newtonsoft.Json;
     using Shevchenko.Language;
     using Shevchenko.GenderDetection;
     using Shevchenko.WordDeclension;
@@ -13,12 +13,12 @@ namespace Shevchenko
     {
         private static IEnumerable<DeclensionRule> Rules()
         {
-            
-            var rulesDataPath = "Resources/declension-rules.json";
-            var jsonData = File.ReadAllText(rulesDataPath);
-            var rules = JsonSerializer.Deserialize<List<DeclensionRule>>(jsonData);
+            var rulesDataPath = "Shevchenko.src.Resources.declension-rules.json";
+            var jsonData = ResourceReader.ReadEmbeddedResource(rulesDataPath);
+            var rules = JsonConvert.DeserializeObject<List<DeclensionRule>>(jsonData);
 
-            return rules;
+            if (rules != null) return rules;
+            throw new InvalidOperationException();
         }
         
         private static AnthroponymInflector CreateInflector()
@@ -42,7 +42,7 @@ namespace Shevchenko
         /// Inflects an anthroponym in nominative grammatical case.
         /// </summary>
         /// <example>
-        /// var anthroponym = await AnthroponymInflector.InNominativeAsync(new DeclensionInput
+        /// var anthroponym = await AnthroponymInflector.InNominativeAsync(new Anthroponym
         /// {
         ///     Gender = GrammaticalGender.Masculine,
         ///     GivenName = "Тарас",
@@ -50,80 +50,73 @@ namespace Shevchenko
         ///     FamilyName = "Шевченко"
         /// });
         /// </example>
-        public static async Task<DeclensionOutput> InNominativeAsync(DeclensionInput input)
+        public static async Task<Anthroponym> InNominativeAsync(AnthroponymDeclension.Anthroponym input)
         {
             InputValidation.ValidateDeclensionInput(input);
-            Anthroponym anthroponym = (Anthroponym)input;
-            return (DeclensionOutput)await _anthroponymInflector.InflectAsync(anthroponym, input.Gender, GrammaticalCase.Nominative);
+            return await _anthroponymInflector.InflectAsync(input, input.Gender, GrammaticalCase.Nominative);
         }
 
         /// <summary>
         /// Inflects an anthroponym in genitive grammatical case.
         /// </summary>
-        public static async Task<DeclensionOutput> InGenitiveAsync(DeclensionInput input)
+        public static async Task<Anthroponym> InGenitiveAsync(Anthroponym input)
         {
             InputValidation.ValidateDeclensionInput(input);
-            Anthroponym anthroponym = (Anthroponym)input;
-            return (DeclensionOutput)await _anthroponymInflector.InflectAsync(anthroponym, input.Gender, GrammaticalCase.Genitive);
+            return await _anthroponymInflector.InflectAsync(input, input.Gender, GrammaticalCase.Genitive);
         }
 
         /// <summary>
         /// Inflects an anthroponym in dative grammatical case.
         /// </summary>
-        public static async Task<DeclensionOutput> InDativeAsync(DeclensionInput input)
+        public static async Task<Anthroponym> InDativeAsync(Anthroponym input)
         {
             InputValidation.ValidateDeclensionInput(input);
-            Anthroponym anthroponym = (Anthroponym)input;
-            return (DeclensionOutput)await _anthroponymInflector.InflectAsync(anthroponym, input.Gender, GrammaticalCase.Dative);
+            return await _anthroponymInflector.InflectAsync(input, input.Gender, GrammaticalCase.Dative);
         }
 
         /// <summary>
         /// Inflects an anthroponym in accusative grammatical case.
         /// </summary>
-        public static async Task<DeclensionOutput> InAccusativeAsync(DeclensionInput input)
+        public static async Task<Anthroponym> InAccusativeAsync(Anthroponym input)
         {
             InputValidation.ValidateDeclensionInput(input);
-            Anthroponym anthroponym = (Anthroponym)input;
-            return (DeclensionOutput)await _anthroponymInflector.InflectAsync(anthroponym, input.Gender, GrammaticalCase.Accusative);
+            return await _anthroponymInflector.InflectAsync(input, input.Gender, GrammaticalCase.Accusative);
         }
 
         /// <summary>
         /// Inflects an anthroponym in ablative grammatical case.
         /// </summary>
-        public static async Task<DeclensionOutput> InAblativeAsync(DeclensionInput input)
+        public static async Task<Anthroponym> InAblativeAsync(Anthroponym input)
         {
             InputValidation.ValidateDeclensionInput(input);
-            Anthroponym anthroponym = (Anthroponym)input;
-            return (DeclensionOutput)await _anthroponymInflector.InflectAsync(anthroponym, input.Gender, GrammaticalCase.Ablative);
+            return await _anthroponymInflector.InflectAsync(input, input.Gender, GrammaticalCase.Ablative);
         }
 
         /// <summary>
         /// Inflects an anthroponym in locative grammatical case.
         /// </summary>
-        public static async Task<DeclensionOutput> InLocativeAsync(DeclensionInput input)
+        public static async Task<Anthroponym> InLocativeAsync(Anthroponym input)
         {
             InputValidation.ValidateDeclensionInput(input);
-            Anthroponym anthroponym = (Anthroponym)input;
-            return (DeclensionOutput)await _anthroponymInflector.InflectAsync(anthroponym, input.Gender, GrammaticalCase.Locative);
+            return await _anthroponymInflector.InflectAsync(input, input.Gender, GrammaticalCase.Locative);
         }
 
         /// <summary>
         /// Inflects an anthroponym in vocative grammatical case.
         /// </summary>
-        public static async Task<DeclensionOutput> InVocativeAsync(DeclensionInput input)
+        public static async Task<Anthroponym> InVocativeAsync(Anthroponym input)
         {
             InputValidation.ValidateDeclensionInput(input);
-            Anthroponym anthroponym = (Anthroponym)input;
-            return (DeclensionOutput)await _anthroponymInflector.InflectAsync(anthroponym, input.Gender, GrammaticalCase.Vocative);
+            return await _anthroponymInflector.InflectAsync(input, input.Gender, GrammaticalCase.Vocative);
         }
 
         /// <summary>
         /// Detects the grammatical gender of an anthroponym.
         /// </summary>
-        public static async Task<GrammaticalGender?> DetectGenderAsync(GenderDetectionInput input)
+        public static async Task<GrammaticalGender?> DetectGenderAsync(Anthroponym input)
         {
             InputValidation.ValidateGenderDetectionInput(input);
-            return await GenderDetector.DetectGender((Anthroponym)input);
+            return await GenderDetector.DetectGender(input);
         }
     }
 }

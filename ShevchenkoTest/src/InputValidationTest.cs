@@ -2,9 +2,7 @@ namespace ShevchenkoTest;
 
 using Shevchenko;
 using Shevchenko.Language;
-using Shevchenko.WordDeclension;
 using Shevchenko.AnthroponymDeclension;
-using Shevchenko.GenderDetection;
 
 public class TestInputValidation
 {
@@ -17,7 +15,7 @@ public class TestInputValidation
         [Fact]
         public void ValidateDeclensionInput_ShouldThrowError_WhenUnsupportedGenderProvided()
         {
-            var input = new DeclensionInput
+            var input = new Shevchenko.AnthroponymDeclension.Anthroponym
             {
                 Gender = (GrammaticalGender)999, // Непідтримуваний enum
                 GivenName = "Тарас",
@@ -36,7 +34,7 @@ public class TestInputValidation
         [Fact]
         public void ValidateDeclensionInput_ShouldThrowError_WhenNoNameParametersProvided()
         {
-            var input = new DeclensionInput
+            var input = new Shevchenko.AnthroponymDeclension.Anthroponym
             {
                 Gender = GrammaticalGender.Masculine
             };
@@ -52,7 +50,7 @@ public class TestInputValidation
         [Fact]
         public void ValidateDeclensionInput_ShouldPass_WhenValidGivenNameProvided()
         {
-            var input = new DeclensionInput
+            var input = new Shevchenko.AnthroponymDeclension.Anthroponym
             {
                 Gender = GrammaticalGender.Masculine,
                 GivenName = "Тарас"
@@ -67,7 +65,7 @@ public class TestInputValidation
         [Fact]
         public void ValidateDeclensionInput_ShouldPass_WhenValidPatronymicNameProvided()
         {
-            var input = new DeclensionInput
+            var input = new Shevchenko.AnthroponymDeclension.Anthroponym
             {
                 Gender = GrammaticalGender.Masculine,
                 PatronymicName = "Григорович"
@@ -82,7 +80,7 @@ public class TestInputValidation
         [Fact]
         public void ValidateDeclensionInput_ShouldPass_WhenValidFamilyNameProvided()
         {
-            var input = new DeclensionInput
+            var input = new Shevchenko.AnthroponymDeclension.Anthroponym
             {
                 Gender = GrammaticalGender.Masculine,
                 FamilyName = "Шевченко"
@@ -103,7 +101,7 @@ public class TestInputValidation
         [Fact]
         public void ValidateGenderDetectionInput_ShouldThrowError_WhenNoNameParametersProvided()
         {
-            var input = new GenderDetectionInput();
+            var input = new Shevchenko.AnthroponymDeclension.Anthroponym();
 
             var exception = Assert.Throws<InputValidationError>(() =>
                 InputValidation.ValidateGenderDetectionInput(input));
@@ -116,7 +114,7 @@ public class TestInputValidation
         [Fact]
         public void ValidateGenderDetectionInput_ShouldPass_WhenValidGivenNameProvided()
         {
-            var input = new GenderDetectionInput
+            var input = new Shevchenko.AnthroponymDeclension.Anthroponym
             {
                 GivenName = "Тарас"
             };
@@ -130,7 +128,7 @@ public class TestInputValidation
         [Fact]
         public void ValidateGenderDetectionInput_ShouldPass_WhenValidFullNameProvided()
         {
-            var input = new GenderDetectionInput
+            var input = new Shevchenko.AnthroponymDeclension.Anthroponym
             {
                 GivenName = "Тарас",
                 PatronymicName = "Григорович",
